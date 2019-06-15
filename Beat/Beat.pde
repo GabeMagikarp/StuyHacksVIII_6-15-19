@@ -30,7 +30,7 @@ class Beat{
     return orix;
   }
   int getOriY(){
-    return oriY;
+    return oriy;
   }
   color getColor(){
     return c;
