@@ -1,6 +1,6 @@
 //videogame like osu.
 class Beat {
-  float radius,orix,oriy,endx,endy,doubleRadius,timestamp;
+  float radius,orix,oriy,endx,endy,doubleRadius,timeStamp;
   boolean moving;
   color c;
   Beat(float x, float y, float radius1, color c1, float timestamp1){
@@ -12,7 +12,7 @@ class Beat {
     c=c1;
     radius = radius1;
     doubleRadius = 2*radius;
-    timestamp = timestamp1;
+    timeStamp = timestamp1;
   }
   Beat(float x1, float y1, float x2, float y2, float radius1, color c1, float timestamp1){
     moving = true;
@@ -23,7 +23,7 @@ class Beat {
     c=c1;
     radius = radius1;
     doubleRadius = 2*radius;
-    timestamp = timestamp1;
+    timeStamp = timestamp1;
   }
   float getRadius(){
     return radius;
