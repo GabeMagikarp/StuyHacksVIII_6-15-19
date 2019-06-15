@@ -55,4 +55,10 @@ class Beat {
   public void setDoubleRadius(float rad) {
    doubleRadius = rad;
   }
+  
+  public int getScoreWhenClicked(float time) {
+    int score = (int)map(time, timeStamp, timeStamp + duration, 0, 75*13);
+    System.out.println(score);
+    return score;
+  }
 }

@@ -15,15 +15,20 @@ BeatMaps maps;
 
 float startTime;
 
+int score;
+
 void setup()
 {
-  size(displayWidth, displayHeight);
+  //fullScreen();
+  //size(displayWidth, displayHeight);
+  size(500, 500);
   background(bgColor);
   frameRate(120);
   
   maps = new BeatMaps();
   map = maps.map1(45);
   startTime = millis();
+  score = 0;
 }
 
 void draw()
@@ -58,19 +63,32 @@ void draw()
   }
   
   if(map.isEmpty()) {
-    // end
+    fill(255);
+    rect(0, 0, width, height);
+    
+    stroke(0);
+    fill(0);
+    textSize(64);
+    text(Integer.toString(score), (width - textWidth(Integer.toString(score)))/2, height/2);
   }
 }
 
 void mouseClicked() {
+  System.out.println("click!");
   boolean hitAnything = false;
+  Beat hit = null;
   for(Beat b : map) {
     if(b.isOnScreen(millis() - startTime)) {
       if(sqrt(pow(mouseX-b.currX, 2) + pow(mouseY-b.currY, 2)) <= b.getRadius()) {
         hitAnything = true;
-        
+        hit = b;
+        break;
       }
     }
+  }
+  if(hitAnything) {
+    map.remove(hit);
+    score += hit.getScoreWhenClicked(millis() - startTime);
   }
 }
 
