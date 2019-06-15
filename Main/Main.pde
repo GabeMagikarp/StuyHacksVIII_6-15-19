@@ -1,20 +1,27 @@
 final color GREEN = color(0, 255, 0);
 final color RED = color(255, 0, 0);
-final color YELLOW = color(0, 255, 255);
+final color YELLOW = color(255, 255, 0);
 final color BLUE = color(0, 0, 255);
 final color ORANGE = color(255, 165, 0);
+
+final color bgColor = color(0);
+
+final float duration = 750;
 
 ArrayList<Beat> map;
 BeatMaps maps;
 
+float startTime;
+
 void setup()
 {
   size(displayWidth, displayHeight);
-  background(300);
+  background(bgColor);
   frameRate(120);
   
   maps = new BeatMaps();
   map = maps.map1();
+  startTime = millis();
 }
 
 void draw()
@@ -27,13 +34,19 @@ void draw()
   
   while(b.getDoubleRadius() != b.getRadius())
     b.setDoubleRadius(b.getDoubleRadius() - 1);*/
-    
+  fill(bgColor);
+  stroke(bgColor);
+  rect(0, 0, width, height);
   for(Beat b : map) {
-    fill(b.getColor());
-    circle(b.getOriX(), b.getOriY(), b.getRadius());
+    if(b.isOnScreen(millis() - startTime)){
+      fill(b.getColor());
+      stroke(b.getColor());
+      circle(b.getOriX(), b.getOriY(), b.getRadius());
     
-    noFill();
-    ellipse(b.getOriX(), b.getOriY(), b.getDoubleRadius(), b.getDoubleRadius());
+      noFill();
+      ellipse(b.getOriX(), b.getOriY(), b.getDoubleRadius(), b.getDoubleRadius());
+      b.setDoubleRadius(b.getDoubleRadius() - 1);
+    }
   }
 }
 
