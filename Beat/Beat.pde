@@ -7,6 +7,8 @@ class Beat{
     moving = false;
     orix = x;
     oriy = y;
+    endx = orix;
+    endy = oriy;
     c=c1;
     radius = radius1;
     doubleRadius = 2*radius;
@@ -29,5 +31,8 @@ class Beat{
   }
   int getOriY(){
     return oriY;
+  }
+  color getColor(){
+    return c;
   }
 }
