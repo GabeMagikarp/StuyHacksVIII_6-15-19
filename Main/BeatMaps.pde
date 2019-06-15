@@ -6,8 +6,8 @@ class BeatMaps{
   //Green, red yellow, blue, orange
   public ArrayList<Beat> map1()
   {
-    int w = displayWidth;
-    int h = displayHeight;
+    float w = displayWidth;
+    float h = displayHeight;
   
     ArrayList<Beat> a = new ArrayList<Beat>();
     a.add(new Beat(.5*w, .5*h, 3, RED));

@@ -1,9 +1,9 @@
 //videogame like osu.
 class Beat {
-  int radius,orix,oriy,endx,endy,doubleRadius;
+  float radius,orix,oriy,endx,endy,doubleRadius;
   boolean moving;
   color c;
-  Beat(int x, int y, int radius1, color c1){
+  Beat(float x, float y, float radius1, color c1){
     moving = false;
     orix = x;
     oriy = y;
@@ -13,7 +13,7 @@ class Beat {
     radius = radius1;
     doubleRadius = 2*radius;
   }
-  Beat(int x1, int y1, int x2, int y2, int radius1, color c1 ){
+  Beat(float x1, float y1, float x2, float y2, float radius1, color c1 ){
     moving = true;
     orix = x1;
     oriy = y1;
@@ -23,19 +23,23 @@ class Beat {
     radius = radius1;
     doubleRadius = 2*radius;
   }
-  int getRadius(){
+  float getRadius(){
     return radius;
   }
-  int getDoubleRadius(){
+  float getDoubleRadius(){
     return doubleRadius;
   }
-  int getOriX(){
+  float getOriX(){
     return orix;
   }
-  int getOriY(){
+  float getOriY(){
     return oriy;
   }
   color getColor(){
     return c;
+  }
+  
+  public void setDoubleRadius(float rad) {
+   doubleRadius = rad;
   }
 }
