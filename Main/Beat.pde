@@ -41,7 +41,7 @@ class Beat {
     return c;
   }
   boolean isOnScreen(float currentTime){
-    if(currentTime == timeStamp){
+    if(currentTime == timestamp){
       return true;
     }
     else{ 

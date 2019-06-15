@@ -37,7 +37,7 @@ void draw()
   }
 }
 
-void buttonPressed()
+void buttonPressed(Beat b)
 {
   //Green = "Q"
   //Red = "W"
