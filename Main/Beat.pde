@@ -3,28 +3,23 @@ class Beat {
   float radius,orix,oriy,endx,endy,doubleRadius,timeStamp;
   boolean moving;
   color c;
-  Beat(float x, float y, color c1, float timestamp1){
-    moving = false;
-    orix = x;
-    oriy = y;
-    endx = orix;
-    endy = oriy;
-    c=c1;
-    radius = 75;
-    doubleRadius = 2*radius;
-    timeStamp = timestamp1;
-  }
-  Beat(float x1, float y1, float x2, float y2, color c1, float timestamp1){
+  
+  public Beat(float x1, float y1, float x2, float y2, color c1, float timestamp1){
     moving = true;
     orix = x1;
     oriy = y1;
     endx = x2;
     endy = y2;
     c=c1;
-    radius = 75;
-    doubleRadius = 2*radius;
+    radius = 100;
+    doubleRadius = radius+75;
     timeStamp = timestamp1;
   }
+  
+  public Beat(float x, float y, color c1, float timestamp1){
+    this(x, y, x, y, c1, timestamp1);
+  }
+  
   float getRadius(){
     return radius;
   }
@@ -40,6 +35,10 @@ class Beat {
   color getColor(){
     return c;
   }
+  float getTimeStamp() {
+    return timeStamp;
+  }
+  
   boolean isOnScreen(float currentTime){
     if(currentTime >= timeStamp && currentTime <= timeStamp + duration){
       return true;

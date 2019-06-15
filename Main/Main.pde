@@ -4,7 +4,7 @@ final color YELLOW = color(255, 255, 0);
 final color BLUE = color(0, 0, 255);
 final color ORANGE = color(255, 165, 0);
 
-final color bgColor = color(255);
+final color bgColor = color(0, 0, 45);
 
 final float duration = 750;
 
@@ -20,7 +20,7 @@ void setup()
   frameRate(120);
   
   maps = new BeatMaps();
-  map = maps.map1();
+  map = maps.map1(45);
   startTime = millis();
 }
 
@@ -37,7 +37,8 @@ void draw()
   fill(bgColor);
   stroke(bgColor);
   rect(0, 0, width, height);
-  for(Beat b : map) {
+  for(int i = 0; i < map.size(); i++) {
+    Beat b = map.get(i);
     if(b.isOnScreen(millis() - startTime)){
       fill(b.getColor());
       stroke(b.getColor());
@@ -47,6 +48,15 @@ void draw()
       ellipse(b.getOriX(), b.getOriY(), b.getDoubleRadius(), b.getDoubleRadius());
       b.setDoubleRadius(b.getDoubleRadius() - 1);
     }
+    
+    if(b.getTimeStamp() + duration < millis() - startTime) {
+      map.remove(b);
+      i--;
+    }
+  }
+  
+  if(map.isEmpty()) {
+    // end
   }
 }
 
