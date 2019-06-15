@@ -26,6 +26,9 @@ class Beat{
   int getRadius(){
     return radius;
   }
+  int getDoubleRadius(){
+    return doubleRadius;
+  }
   int getOriX(){
     return orix;
   }
