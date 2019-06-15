@@ -1,6 +1,7 @@
 //videogame like osu.
 class Beat {
   float radius,orix,oriy,endx,endy,doubleRadius,timeStamp;
+  float currX, currY;
   boolean moving;
   color c;
   
@@ -14,10 +15,14 @@ class Beat {
     radius = 100;
     doubleRadius = radius+75;
     timeStamp = timestamp1;
+    moving = true;
+    currX = x1;
+    currY = y1;
   }
   
   public Beat(float x, float y, color c1, float timestamp1){
     this(x, y, x, y, c1, timestamp1);
+    moving = false;
   }
   
   float getRadius(){

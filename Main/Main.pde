@@ -1,3 +1,5 @@
+//left q, right w, up e, down r
+
 final color GREEN = color(0, 255, 0);
 final color RED = color(255, 0, 0);
 final color YELLOW = color(255, 255, 0);
@@ -57,6 +59,18 @@ void draw()
   
   if(map.isEmpty()) {
     // end
+  }
+}
+
+void mouseClicked() {
+  boolean hitAnything = false;
+  for(Beat b : map) {
+    if(b.isOnScreen(millis() - startTime)) {
+      if(sqrt(pow(mouseX-b.currX, 2) + pow(mouseY-b.currY, 2)) <= b.getRadius()) {
+        hitAnything = true;
+        
+      }
+    }
   }
 }
 
