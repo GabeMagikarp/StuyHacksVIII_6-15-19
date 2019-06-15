@@ -1,5 +1,5 @@
 //videogame like osu.
-class Beat{
+class Beat {
   int radius,orix,oriy,endx,endy,doubleRadius;
   boolean moving;
   color c;

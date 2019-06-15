@@ -1,4 +1,9 @@
-class Main{
+final color GREEN = color(0, 255, 0);
+final color RED = color(255, 0, 0);
+final color YELLOW = color(0, 255, 255);
+final color BLUE = color(0, 0, 255);
+final color ORANGE = color(255, 165, 0);
+
 void setup()
 {
   size(displayWidth, displayHeight);
@@ -8,12 +13,12 @@ void setup()
 
 void draw()
 {
-  beat b;
+  Beat b;
   
   circle(b.getOriX(), b.getOriY(), b.getRadius());
   
   noFill();
-  circle(b.getOriX(), b.getOriY(), b.getDoubleRadius());
+  ellipse(b.getOriX(), b.getOriY(), b.getDoubleRadius(), b.getDoubleRadius());
   
   while(b.getDoubleRadius() != b.getRadius())
   b.setDoubleRadius(b.getDoubleRadius--);
@@ -31,6 +36,4 @@ void buttonPressed()
   {
     
   }  
-}
-
 }
