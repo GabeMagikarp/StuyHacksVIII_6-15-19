@@ -4,7 +4,7 @@ final color YELLOW = color(255, 255, 0);
 final color BLUE = color(0, 0, 255);
 final color ORANGE = color(255, 165, 0);
 
-final color bgColor = color(0);
+final color bgColor = color(255);
 
 final float duration = 750;
 
