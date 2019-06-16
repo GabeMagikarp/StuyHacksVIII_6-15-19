@@ -5,6 +5,8 @@ import java.util.Stack;
 import processing.sound.*;
 SoundFile file;
 
+boolean menu;
+
 final color GREEN = color(0, 255, 0);
 final color RED = color(255, 0, 0);
 final color YELLOW = color(255, 255, 0);
@@ -31,8 +33,9 @@ void setup()
   background(bgColor);
   frameRate(FRAMERATE);
   
+  menu = true;
+  
   maps = new BeatMaps();
-  map = maps.map1(45);
   startTime = millis();
   score = 0;
   
@@ -43,34 +46,24 @@ void setup()
 
 void draw()
 {
-  /*Beat b;
-  //circle(b.getOriX(), b.getOriY(), b.getRadius());
-  
-  noFill();
-  //ellipse(b.getOriX(), b.getOriY(), b.getDoubleRadius(), b.getDoubleRadius());
-  
-  while(b.getDoubleRadius() != b.getRadius())
-    b.setDoubleRadius(b.getDoubleRadius() - 1);*/
-  fill(bgColor);
-  stroke(bgColor);
-  rect(0, 0, width, height);
-  for(int i = 0; i < map.size(); i++) {
-    Beat b = map.get(i);
-    if(b.isOnScreen(millis() - startTime)){
-      /*fill(b.getColor());
-      stroke(b.getColor());
-      ellipse(b.getOriX(), b.getOriY(), b.getRadius(), b.getRadius());
+  if(menu) {
+    /* someone do a ui for the menu */
     
-      noFill();
-      ellipse(b.getOriX(), b.getOriY(), b.getDoubleRadius(), b.getDoubleRadius());*/
-      b.drawSelf();
-      b.setDoubleRadius(b.getDoubleRadius() - 1);
-    }
+  } else {
+    fill(bgColor);
+    stroke(bgColor);
+    rect(0, 0, width, height);
+    for(int i = 0; i < map.size(); i++) {
+      Beat b = map.get(i);
+      if(b.isOnScreen(millis() - startTime)){
+        b.drawSelf();
+        b.setDoubleRadius(b.getDoubleRadius() - 1);
+      }
     
-    if(b.getTimeStamp() + duration < millis() - startTime) {
-      map.remove(b);
-      i--;
-    }
+      if(b.getTimeStamp() + duration < millis() - startTime) {
+        map.remove(b);
+        i--;
+      }
   }
   
   if(map.isEmpty()) {
