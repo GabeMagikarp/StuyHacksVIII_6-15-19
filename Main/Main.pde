@@ -35,7 +35,7 @@ void setup()
   startTime = millis();
   score = 0;
   
-  file = new SoundFile(this, "yeet.aiff");
+  file = new SoundFile(this, "yeet.wav");
   file.play();
   temp = new Stack();
 }
