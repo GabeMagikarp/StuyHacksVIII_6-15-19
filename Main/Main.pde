@@ -39,7 +39,6 @@ void setup()
   
   map = null;
   maps = new BeatMaps();
-  startTime = millis();
   score = 0;
   
   file = new SoundFile(this, "yeet.wav");
@@ -106,7 +105,6 @@ void draw()
       score += hit.getScoreWhenClicked(millis() - startTime);
       temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
     }
-<<<<<<< HEAD
   }
 }*/
 
@@ -115,10 +113,18 @@ void mouseClicked() {
     map = maps.map1(45);
     menu = false;
     file.play();
+    startTime = millis();
   }
 }
 
 void keyPressed() {
+  if(menu) {
+    map = maps.map1(45);
+    menu = false;
+    file.play();
+    startTime = millis();
+  }
+  
   boolean hitAnything = false;
   Beat hit = null;
   if(map != null) {
@@ -171,20 +177,6 @@ void keyPressed() {
       }
     }
   }
-}
-
-void buttonPressed(Beat b)
-{
-  //Green = "Q"
-  //Red = "W"
-  //Yellow = "E"
-  //Blue = "R"
-  //Orange = "T"
-  
-  if(b.getColor() == GREEN)
-  {
-    
-  }  
 }
 
 void playMusic(){
