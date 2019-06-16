@@ -111,8 +111,11 @@ void draw()
 }*/
 
 void mouseClicked() {
-  map = maps.map1(45);
-  menu = false;
+  if(menu) {
+    map = maps.map1(45);
+    menu = false;
+    file.play();
+  }
 }
 
 void keyPressed() {
