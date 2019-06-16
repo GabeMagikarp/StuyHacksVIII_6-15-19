@@ -142,5 +142,37 @@
     a.add(new Beat(.5*w, .5*h, BLUE, 128.1*mspb));
     return a;
   }
-
+  public ArrayList<Beat> map2(float bpm){
+    float mspb = 60*1000/bpm; //as in milliseconds per beat, n*msbp puts a note n beats in
+    float w = width;
+    float h = height;
+    float lastx = .5;
+    float lasty = .5;
+    int count = 0;
+    ArrayList<Beat> a = new ArrayList<Beat>();
+    do{
+      lastx = randx(lastx);
+      lasty = randy(lasty);
+      a.add(new Beat(lastx*w, lasty*h,randomColor(),count*mspb));
+      count++;
+    }while(file.isPlaying()==true);
+    return a;
+  }
+  color randomColor(){
+    int r = (int)random(5);
+    if(r == 0) return RED;
+    if(r==1) return ORANGE;
+    if(r==2) return BLUE;
+    if(r==3) return GREEN;
+    if(r==4) return YELLOW;
+    return RED;
+  }
+  float randx(float last){
+    float yeet = last + random(-.3,.3);
+    return yeet;
+  }
+  float randy(float last){
+    float yeet = last + random(-.3,.3);
+    return yeet;
+  }
 }
