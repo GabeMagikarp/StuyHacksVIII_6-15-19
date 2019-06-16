@@ -143,19 +143,19 @@
     return a;
   }
   public ArrayList<Beat> map2(float bpm){
+    float dist = map(bpm, 0, 60, .4, .1);
+    
     float mspb = 60*1000/bpm; //as in milliseconds per beat, n*msbp puts a note n beats in
     float w = width;
     float h = height;
     float lastx = .5;
     float lasty = .5;
-    int count = 0;
     ArrayList<Beat> a = new ArrayList<Beat>();
-    do{
-      lastx = randx(lastx);
-      lasty = randy(lasty);
-      a.add(new Beat(lastx*w, lasty*h,randomColor(),count*mspb));
-      count++;
-    }while(file.isPlaying()==true);
+    for(int i = 0; i < file.duration()*bpm/60; i++){
+      lastx = randx(lastx, dist);
+      lasty = randy(lasty, dist);
+      a.add(new Beat(lastx*w, lasty*h,randomColor(),i*mspb));
+    }
     return a;
   }
   color randomColor(){
@@ -167,12 +167,18 @@
     if(r==4) return YELLOW;
     return RED;
   }
-  float randx(float last){
-    float yeet = last + random(-.3,.3);
+  float randx(float last, float dist){
+    float yeet = last + random(-dist, dist);
+    while(yeet + 100 <= 0 || yeet + 100 >= 1) {
+      yeet = last + random(-dist, dist);
+    }
     return yeet;
   }
-  float randy(float last){
-    float yeet = last + random(-.3,.3);
+  float randy(float last, float dist){
+    float yeet = last + random(-dist, dist);
+    while(yeet + 100<= 0 || yeet + 100 >= 1) {
+      yeet = last + random(-dist, dist);
+    }
     return yeet;
   }
 }
