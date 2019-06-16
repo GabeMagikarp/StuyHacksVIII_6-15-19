@@ -53,8 +53,16 @@ void draw()
     textFont(font);
     //textSize(100);
     textAlign(CENTER, CENTER);
-    text("ACOUSTIC CHAMPION", .5*width, .5*height);
+
+    
+    text("ACOUSTIC", .5*width, .4*height);
+    text("CHAMPION", .5*width, .55*height);
     fill(255, 102, 68);
+    
+    
+    text("ACOUSTIC", .5*width, .405*height);
+    text("CHAMPION", .5*width, .555*height);
+    fill(255);
     
   } else {
     fill(bgColor);
