@@ -12,7 +12,7 @@ final color GREEN = color(0, 255, 0);
 final color RED = color(255, 0, 0);
 final color YELLOW = color(255, 255, 0);
 final color BLUE = color(0, 0, 255);
-final color ORANGE = color(255, 165, 0);
+final color ORANGE = color(255, 125, 0);
 
 final color bgColor = color(0, 0, 45);
 
@@ -28,6 +28,7 @@ int rect1x,rect1y,rect2x,rect2y,rect3x,rect3y;
 final int FRAMERATE = 60;
 
 Stack<Beat> temp;
+int initialsize;
 
 void setup()
 {
@@ -40,6 +41,8 @@ void setup()
   map = null;
   maps = new BeatMaps();
   score = 0;
+  
+  initialsize = 0;
   
   file = new SoundFile(this, "yeet.wav");
   //file.play();
@@ -55,14 +58,30 @@ void draw()
     textAlign(CENTER, CENTER);
 
     
-    text("ACOUSTIC", .5*width, .4*height);
-    text("CHAMPION", .5*width, .55*height);
-    fill(255, 102, 68);
+    text("ACOUSTIC", .5*width, .3*height);
+    text("CHAMPION", .5*width, .45*height);
+    //orange
+    fill(255, 139, 45);
     
     
-    text("ACOUSTIC", .5*width, .405*height);
-    text("CHAMPION", .5*width, .555*height);
+    text("ACOUSTIC", .5*width, .305*height);
+    text("CHAMPION", .5*width, .455*height);
+    //white
     fill(255);
+    
+    PFont font2 = createFont("Furtura-Bold", 100);
+    textFont(font2);
+    
+    textSize(50);
+    //text("PRESS ANY BUTTON TO START", .5*width, .6*height);
+    //red
+    fill(255, 45, 45);
+    
+    
+    text("PRESS ANY BUTTON TO START", .5*width, .605*height);
+    //white
+    fill(255);
+    textFont(font);
     
   } else {
     fill(bgColor);
@@ -90,6 +109,12 @@ void draw()
       textSize(64);
       text(Integer.toString(score), (width - textWidth(Integer.toString(score)))/2, height/2);
      }
+     
+     textFont(createFont("Futura-Bold-48.vlw", 30));
+     fill(255);
+     stroke(255);
+     String percent = Integer.toString((int)(100*(1-map.size()/initialsize))) + '%';
+     text(percent, width-textWidth(percent), 40);
   }
   
   
@@ -124,6 +149,7 @@ void draw()
 void mouseClicked() {
   if(menu) {
     map = maps.map1(45);
+    initialsize = map.size();
     menu = false;
     file.play();
     startTime = millis();
@@ -133,6 +159,7 @@ void mouseClicked() {
 void keyPressed() {
   if(menu) {
     map = maps.map1(45);
+    initialsize = map.size();
     menu = false;
     file.play();
     startTime = millis();
