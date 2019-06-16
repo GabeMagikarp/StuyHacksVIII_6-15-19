@@ -117,34 +117,11 @@ void draw()
      text(percent, width-textWidth(percent), 40);
   }
   
-  
-  
   while(!temp.empty()) {
     Beat b = temp.pop();
     b.drawSelf();
   }
 }
-
-/*void mouseClicked() {
-  boolean hitAnything = false;
-  Beat hit = null;
-  if(map != null) {
-    for(Beat b : map) {
-      if(b.isOnScreen(millis() - startTime)) {
-        if(sqrt(pow(mouseX-b.currX, 2) + pow(mouseY-b.currY, 2)) <= b.getRadius()) {
-          hitAnything = true;
-          hit = b;
-          break;
-        }
-      }
-    }
-    if(hitAnything) {
-      map.remove(hit);
-      score += hit.getScoreWhenClicked(millis() - startTime);
-      temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
-    }
-  }
-}*/
 
 void mouseClicked() {
   if(menu) {
@@ -216,6 +193,13 @@ void keyPressed() {
           break;
       }
     }
+  }
+  
+  if(keyCode == ENTER) {
+    fill(bgColor);
+    stroke(bgColor);
+    rect(0, 0, width, height);
+    menu = true;
   }
 }
 
