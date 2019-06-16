@@ -14,7 +14,8 @@ final color YELLOW = color(255, 255, 0);
 final color BLUE = color(0, 0, 255);
 final color ORANGE = color(255, 125, 0);
 
-final color bgColor = color(0, 0, 45);
+//(0, 0, 45)
+final color bgColor = color(0);
 
 final float duration = 1250;
 
@@ -115,6 +116,8 @@ void draw()
      stroke(255);
      String percent = Integer.toString((int)(100-100*map.size()/initialsize)) + '%';
      text(percent, width-textWidth(percent), 40);
+     
+     text("Points: " + Integer.toString(score), width-textWidth("Points "), 80);
   }
   
   while(!temp.empty()) {
@@ -158,37 +161,27 @@ void keyPressed() {
       switch(key) {
         case 'Q': case 'q':
           if(hit.getColor() == GREEN) {
-            map.remove(hit);
-            score += hit.getScoreWhenClicked(millis() - startTime);
-            temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
+              doHit(hit);
           }
           break;
         case 'W': case 'w':
           if(hit.getColor() == RED) {
-            map.remove(hit);
-            score += hit.getScoreWhenClicked(millis() - startTime);
-            temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
+            doHit(hit);
           }
           break;
         case 'E': case 'e':
           if(hit.getColor() == YELLOW) {
-            map.remove(hit);
-            score += hit.getScoreWhenClicked(millis() - startTime);
-            temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
+            doHit(hit);
           }
           break;
         case 'R': case 'r':
           if(hit.getColor() == BLUE) {
-            map.remove(hit);
-            score += hit.getScoreWhenClicked(millis() - startTime);
-            temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
+            doHit(hit);
           }
           break;
         case 'T': case 't':
           if(hit.getColor() == ORANGE) {
-            map.remove(hit);
-            score += hit.getScoreWhenClicked(millis() - startTime);
-            temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
+              doHit(hit);
           }
           break;
       }
@@ -205,4 +198,12 @@ void keyPressed() {
 
 void playMusic(){
    file.play();
+}
+
+void doHit(Beat hit){
+   map.remove(hit);
+   int points = hit.getScoreWhenClicked(millis() - startTime); 
+   score += points;
+   
+   temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
 }
