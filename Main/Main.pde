@@ -29,6 +29,7 @@ final int FRAMERATE = 60;
 
 Stack<Beat> temp;
 int initialsize;
+int nHit;
 
 void setup()
 {
@@ -47,6 +48,7 @@ void setup()
   file = new SoundFile(this, "yeet.wav");
   //file.play();
   temp = new Stack();
+  nHit = 0;
 }
 
 void draw()
@@ -113,8 +115,10 @@ void draw()
      textFont(createFont("Futura-Bold-48.vlw", 30));
      fill(255);
      stroke(255);
-     String percent = Integer.toString((int)(100-100*map.size()/initialsize)) + '%';
-     text(percent, width-textWidth(percent), 40);
+     if(nHit != 0) {
+       String percent = Integer.toString((int)(100-100*nHit/(initialsize - map.size()))) + '%';
+       text(percent, width-textWidth(percent), 40);
+     }
   }
   
   while(!temp.empty()) {
@@ -161,6 +165,7 @@ void keyPressed() {
             map.remove(hit);
             score += hit.getScoreWhenClicked(millis() - startTime);
             temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
+            nHit++;
           }
           break;
         case 'W': case 'w':
@@ -168,6 +173,7 @@ void keyPressed() {
             map.remove(hit);
             score += hit.getScoreWhenClicked(millis() - startTime);
             temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
+            nHit++;
           }
           break;
         case 'E': case 'e':
@@ -175,6 +181,7 @@ void keyPressed() {
             map.remove(hit);
             score += hit.getScoreWhenClicked(millis() - startTime);
             temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
+            nHit++;
           }
           break;
         case 'R': case 'r':
@@ -189,6 +196,7 @@ void keyPressed() {
             map.remove(hit);
             score += hit.getScoreWhenClicked(millis() - startTime);
             temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
+            nHit++;
           }
           break;
       }
