@@ -9,7 +9,7 @@ final color ORANGE = color(255, 165, 0);
 
 final color bgColor = color(0, 0, 45);
 
-final float duration = 750;
+final float duration = 1250;
 
 ArrayList<Beat> map;
 BeatMaps maps;
@@ -17,6 +17,7 @@ BeatMaps maps;
 float startTime;
 
 int score;
+final int FRAMERATE = 60;
 
 Stack<Beat> temp;
 
@@ -24,7 +25,7 @@ void setup()
 {
   size(500, 500);
   background(bgColor);
-  frameRate(120);
+  frameRate(FRAMERATE);
   
   maps = new BeatMaps();
   map = maps.map1(45);

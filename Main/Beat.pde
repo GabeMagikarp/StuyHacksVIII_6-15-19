@@ -13,7 +13,7 @@ class Beat {
     endy = y2;
     c=c1;
     radius = 100;
-    doubleRadius = radius + map(duration, 0, 1000, 0, 60);
+    doubleRadius = radius + duration*FRAMERATE/1000;
     timeStamp = timestamp1;
     moving = true;
     currX = x1;
