@@ -119,6 +119,12 @@ void mouseClicked() {
 }
 
 void keyPressed() {
+  if(menu) {
+    map = maps.map1(45);
+    menu = false;
+    file.play();
+  }
+  
   boolean hitAnything = false;
   Beat hit = null;
   if(map != null) {
