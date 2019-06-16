@@ -49,7 +49,12 @@ void setup()
 void draw()
 {
   if(menu) {
-    
+    PFont font = createFont("FasterOne-Regular.ttf", 100);
+    textFont(font);
+    //textSize(100);
+    textAlign(CENTER, CENTER);
+    text("ACOUSTIC CHAMPION", .5*width, .5*height);
+    fill(255, 102, 68);
     
   } else {
     fill(bgColor);
