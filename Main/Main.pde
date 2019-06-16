@@ -1,7 +1,6 @@
 //left q, right w, up e, down r
 //TODO: add strummy shit
 import java.util.Stack;
-
   
 import processing.sound.*;
 SoundFile file;
@@ -29,8 +28,12 @@ int rect1x,rect1y,rect2x,rect2y,rect3x,rect3y;
 final int FRAMERATE = 60;
 
 Stack<Beat> temp;
+ArrayList<TextEffect> effects;
+
 int initialsize;
 int nHit;
+
+int[] scores;
 
 void setup()
 {
@@ -49,11 +52,15 @@ void setup()
   file = new SoundFile(this, "yeet.wav");
   //file.play();
   temp = new Stack();
+  effects = new ArrayList();
   nHit = 0;
+  
+  int[] scores = {0, 0, 0, 0};
 }
 
 void draw()
 {
+  cursor(CROSS);
   if(menu) {
     PFont font = createFont("FasterOne-Regular.ttf", 100);
     textFont(font);
@@ -131,6 +138,15 @@ void draw()
     Beat b = temp.pop();
     b.drawSelf();
   }
+  
+  for(int i = 0; i < effects.size(); i++) {
+    TextEffect t = effects.get(i);
+    t.drawSelf();
+    if(t.time + 1000 < millis() - startTime) {
+      effects.remove(t);
+      i--;
+    }
+  }
 }
 
 void mouseClicked() {
@@ -168,42 +184,31 @@ void keyPressed() {
       switch(key) {
         case 'Q': case 'q':
           if(hit.getColor() == GREEN) {
-              doHit(hit);
-            map.remove(hit);
-            score += hit.getScoreWhenClicked(millis() - startTime);
-            temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
+            doHit(hit);
             nHit++;
           }
           break;
         case 'W': case 'w':
           if(hit.getColor() == RED) {
             doHit(hit);
-            map.remove(hit);
-            score += hit.getScoreWhenClicked(millis() - startTime);
-            temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
             nHit++;
           }
           break;
         case 'E': case 'e':
           if(hit.getColor() == YELLOW) {
             doHit(hit);
-            map.remove(hit);
-            score += hit.getScoreWhenClicked(millis() - startTime);
-            temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
             nHit++;
           }
           break;
         case 'R': case 'r':
           if(hit.getColor() == BLUE) {
             doHit(hit);
+            nHit++;
           }
           break;
         case 'T': case 't':
           if(hit.getColor() == ORANGE) {
-              doHit(hit);
-            map.remove(hit);
-            score += hit.getScoreWhenClicked(millis() - startTime);
-            temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
+            doHit(hit);
             nHit++;
           }
           break;
@@ -228,5 +233,23 @@ void doHit(Beat hit){
    int points = hit.getScoreWhenClicked(millis() - startTime); 
    score += points;
    
+   String text = "";
+   if(points < 75*13/2) {
+     text = "OK";
+     scores[0]++;
+   }
+   else if(points < 3*75*13/4) {
+     text = "GOOD";
+     scores[1]++;
+   }
+   else if(points < 7*75*13/8) {
+     text = "GREAT";
+     scores[2]++;
+   } else {
+     text = "PERFECT";
+     scores[3]++;
+   }
+   
+   effects.add(new TextEffect(hit.currX, hit.currY - hit.radius, millis() - startTime, text));
    temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
 }
