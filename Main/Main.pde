@@ -5,6 +5,8 @@ import java.util.Stack;
 import processing.sound.*;
 SoundFile file;
 
+PImage instructions;
+
 boolean menu;
 
 final color GREEN = color(0, 255, 0);
@@ -33,7 +35,7 @@ ArrayList<TextEffect> effects;
 int initialsize;
 int nHit;
 
-int[] scores;
+public int[] scores;
 
 void setup()
 {
@@ -55,14 +57,19 @@ void setup()
   effects = new ArrayList();
   nHit = 0;
   
-  int[] scores = {0, 0, 0, 0};
+  instructions = loadImage("instructions.png");
+  
+  scores = new int[]{0, 0, 0, 0};
 }
 
 void draw()
 {
   cursor(CROSS);
   if(menu) {
-    PFont font = createFont("FasterOne-Regular.ttf", 100);
+    instructions.resize(width, height);
+    image(instructions, 0, 0);
+    
+    /*PFont font = createFont("FasterOne-Regular.ttf", 100);
     textFont(font);
     //textSize(100);
     textAlign(CENTER, CENTER);
@@ -91,7 +98,7 @@ void draw()
     text("PRESS ANY BUTTON TO START", .5*width, .605*height);
     //white
     fill(255);
-    textFont(font);
+    textFont(font);*/
     
   } else {
     fill(bgColor);
@@ -126,7 +133,7 @@ void draw()
      //String percent = Integer.toString((int)(100-100*map.size()/initialsize)) + '%';
      //text(percent, width-textWidth(percent), 40);
      
-     text("Points: " + Integer.toString(score), width-textWidth("Points "), 80);
+     text("Points: " + Integer.toString(score), width-textWidth("Points "+score), 80);
      String percent;
      if(nHit != 0) {
        percent = Integer.toString((int)(100-100*nHit/(initialsize - map.size()))) + '%';
@@ -217,11 +224,33 @@ void keyPressed() {
   }
   
   if(keyCode == ENTER) {
-    fill(bgColor);
-    stroke(bgColor);
-    rect(0, 0, width, height);
-    menu = true;
+    reset();
   }
+}
+
+void reset() {
+  file.stop();
+  menu = true;
+  
+  map = null;
+  maps = new BeatMaps();
+  score = 0;
+  
+  initialsize = 0;
+  
+  file = new SoundFile(this, "yeet.wav");
+  //file.play();
+  temp = new Stack();
+  effects = new ArrayList();
+  nHit = 0;
+  
+  instructions = loadImage("instructions.png");
+  
+  scores = new int[]{0, 0, 0, 0};
+  
+  fill(bgColor);
+  stroke(bgColor);
+  rect(0, 0, width, height);
 }
 
 void playMusic(){
