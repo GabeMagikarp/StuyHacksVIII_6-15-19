@@ -1,4 +1,5 @@
 //left q, right w, up e, down r
+import java.util.Stack;
 
   
 import processing.sound.*;
@@ -21,10 +22,10 @@ float startTime;
 
 int score;
 
+Stack<Beat> temp;
+
 void setup()
 {
-  //fullScreen();
-  //size(displayWidth, displayHeight);
   size(500, 500);
   background(bgColor);
   frameRate(120);
@@ -35,6 +36,8 @@ void setup()
   score = 0;
   
   file = new SoundFile(this, "yeet.aiff");
+  file.play();
+  temp = new Stack();
 }
 
 void draw()
@@ -47,19 +50,19 @@ void draw()
   
   while(b.getDoubleRadius() != b.getRadius())
     b.setDoubleRadius(b.getDoubleRadius() - 1);*/
-  playMusic();
   fill(bgColor);
   stroke(bgColor);
   rect(0, 0, width, height);
   for(int i = 0; i < map.size(); i++) {
     Beat b = map.get(i);
     if(b.isOnScreen(millis() - startTime)){
-      fill(b.getColor());
+      /*fill(b.getColor());
       stroke(b.getColor());
-      circle(b.getOriX(), b.getOriY(), b.getRadius());
+      ellipse(b.getOriX(), b.getOriY(), b.getRadius(), b.getRadius());
     
       noFill();
-      ellipse(b.getOriX(), b.getOriY(), b.getDoubleRadius(), b.getDoubleRadius());
+      ellipse(b.getOriX(), b.getOriY(), b.getDoubleRadius(), b.getDoubleRadius());*/
+      b.drawSelf();
       b.setDoubleRadius(b.getDoubleRadius() - 1);
     }
     
@@ -78,10 +81,14 @@ void draw()
     textSize(64);
     text(Integer.toString(score), (width - textWidth(Integer.toString(score)))/2, height/2);
   }
+  
+  while(!temp.empty()) {
+    Beat b = temp.pop();
+    b.drawSelf();
+  }
 }
 
 void mouseClicked() {
-  System.out.println("click!");
   boolean hitAnything = false;
   Beat hit = null;
   for(Beat b : map) {
@@ -96,6 +103,7 @@ void mouseClicked() {
   if(hitAnything) {
     map.remove(hit);
     score += hit.getScoreWhenClicked(millis() - startTime);
+    temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
   }
 }
 
