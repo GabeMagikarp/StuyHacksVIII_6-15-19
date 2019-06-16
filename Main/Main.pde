@@ -1,6 +1,10 @@
 //left q, right w, up e, down r
 import java.util.Stack;
 
+  
+import processing.sound.*;
+SoundFile file;
+
 final color GREEN = color(0, 255, 0);
 final color RED = color(255, 0, 0);
 final color YELLOW = color(255, 255, 0);
@@ -31,6 +35,9 @@ void setup()
   map = maps.map1(45);
   startTime = millis();
   score = 0;
+  
+  file = new SoundFile(this, "yeet.aiff");
+  file.play();
   temp = new Stack();
 }
 
@@ -113,4 +120,8 @@ void buttonPressed(Beat b)
   {
     
   }  
+}
+
+void playMusic(){
+   file.play();
 }
