@@ -92,8 +92,54 @@
     a.add(new Beat(.5*w, .6*h, RED, 78.4*mspb));
     a.add(new Beat(.55*w, .7*h, BLUE, 79.4*mspb));
     a.add(new Beat(.45*w, .75*h, YELLOW, 80.4*mspb));
-    
-    
+    a.add(new Beat(.5*w, .7*h, GREEN, 81.4*mspb));
+    a.add(new Beat(.75*w, .65*h, BLUE, 82.4*mspb));
+    a.add(new Beat(.65*w, .65*h, RED, 83.4*mspb));
+    a.add(new Beat(.85*w, .5*h, ORANGE, 84.4*mspb));
+    a.add(new Beat(.9*w, .55*h, YELLOW, 85.4*mspb));
+    a.add(new Beat(.95*w, .75*h, RED, 86.4*mspb));
+    a.add(new Beat(.75*w, .65*h, GREEN, 87.4*mspb));
+    a.add(new Beat(.8*w, .5*h, RED, 88.4*mspb));
+    a.add(new Beat(.84*w, .35*h, YELLOW, 89.4*mspb));
+    a.add(new Beat(.65*w, .25*h, BLUE, 90.3*mspb));
+    a.add(new Beat(.7*w, .45*h, RED, 91.3*mspb));
+    a.add(new Beat(.73*w, .5*h, GREEN, 92.3*mspb));
+    a.add(new Beat(.75*w, .55*h, ORANGE, 93.3*mspb));
+    a.add(new Beat(.8*w, .653*h, YELLOW, 94.3*mspb));
+    a.add(new Beat(.65*w, .72*h, BLUE, 95.3*mspb));
+    a.add(new Beat(.5*w, .73*h, RED, 96.3*mspb));
+    a.add(new Beat(.6*w, .74*h, GREEN, 97.2*mspb));
+    a.add(new Beat(.45*w, .64*h, ORANGE, 98.2*mspb));
+    a.add(new Beat(.35*w, .6*h, BLUE, 99.2*mspb));
+    a.add(new Beat(.3*w, .5*h, YELLOW, 100.2*mspb));
+    a.add(new Beat(.45*w, .65*h, RED, 101.2*mspb));
+    a.add(new Beat(.25*w, .5*h, ORANGE, 102.2*mspb));
+    a.add(new Beat(.2*w, .75*h, BLUE, 103.2*mspb));
+    a.add(new Beat(.15*w, .65*h, RED, 104.2*mspb));
+    a.add(new Beat(.35*w, .45*h, GREEN, 105.2*mspb));
+    a.add(new Beat(.44*w, .35*h, ORANGE, 106.2*mspb));
+    a.add(new Beat(.45*w, .2*h, YELLOW, 107.2*mspb));
+    a.add(new Beat(.4*w, .15*h, RED, 108.2*mspb));
+    a.add(new Beat(.35*w, .25*h, BLUE, 109.2*mspb));
+    a.add(new Beat(.5*w, .35*h, ORANGE, 110.2*mspb));
+    a.add(new Beat(.54*w, .55*h, BLUE, 111.2*mspb));
+    a.add(new Beat(.6*w, .45*h, RED, 112.2*mspb));
+    a.add(new Beat(.75*w, .55*h, GREEN, 113.2*mspb));
+    a.add(new Beat(.8*w, .5*h, BLUE, 114.2*mspb));
+    a.add(new Beat(.9*w, .52*h, RED, 115.2*mspb));
+    a.add(new Beat(.95*w, .64*h, YELLOW, 116.2*mspb));
+    a.add(new Beat(.755*w, .45*h, ORANGE, 117.2*mspb));
+    a.add(new Beat(.65*w, .65*h, GREEN, 118.2*mspb));
+    a.add(new Beat(.75*w, .55*h, BLUE, 119.2*mspb));
+    a.add(new Beat(.65*w, .65*h, RED, 120.2*mspb));
+    a.add(new Beat(.5*w, .55*h, GREEN, 121.2*mspb));
+    a.add(new Beat(.35*w, .75*h, YELLOW, 122.2*mspb));
+    a.add(new Beat(.55*w, .8*h, GREEN, 123.2*mspb));
+    a.add(new Beat(.4*w, .9*h, ORANGE, 124.2*mspb));
+    a.add(new Beat(.65*w, .95*h, RED, 125.1*mspb));
+    a.add(new Beat(.75*w, .85*h, BLUE, 126.1*mspb));
+    a.add(new Beat(.85*w, .7*h, GREEN, 127.1*mspb));
+    a.add(new Beat(.5*w, .5*h, BLUE, 128.1*mspb));
     return a;
   }
 
