@@ -1,5 +1,9 @@
 //left q, right w, up e, down r
 
+  
+import processing.sound.*;
+SoundFile file;
+
 final color GREEN = color(0, 255, 0);
 final color RED = color(255, 0, 0);
 final color YELLOW = color(255, 255, 0);
@@ -29,6 +33,8 @@ void setup()
   map = maps.map1(45);
   startTime = millis();
   score = 0;
+  
+  file = new SoundFile(this, "yeet.aiff");
 }
 
 void draw()
@@ -41,6 +47,7 @@ void draw()
   
   while(b.getDoubleRadius() != b.getRadius())
     b.setDoubleRadius(b.getDoubleRadius() - 1);*/
+  playMusic();
   fill(bgColor);
   stroke(bgColor);
   rect(0, 0, width, height);
@@ -104,4 +111,8 @@ void buttonPressed(Beat b)
   {
     
   }  
+}
+
+void playMusic(){
+   file.play();
 }
