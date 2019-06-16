@@ -23,6 +23,7 @@ BeatMaps maps;
 float startTime;
 
 int score;
+int rect1x,rect1x,rect2x,rect2y,rect3x,rect3y;
 final int FRAMERATE = 60;
 
 Stack<Beat> temp;
@@ -64,6 +65,7 @@ void draw()
         map.remove(b);
         i--;
       }
+    }
   }
   
   if(map.isEmpty()) {
