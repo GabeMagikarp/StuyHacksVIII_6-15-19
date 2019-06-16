@@ -126,7 +126,7 @@ void draw()
      //String percent = Integer.toString((int)(100-100*map.size()/initialsize)) + '%';
      //text(percent, width-textWidth(percent), 40);
      
-     text("Points: " + Integer.toString(score), width-textWidth("Points "), 80);
+     text("Points: " + Integer.toString(score), width-textWidth("Points "+score), 80);
      String percent;
      if(nHit != 0) {
        percent = Integer.toString((int)(100-100*nHit/(initialsize - map.size()))) + '%';
