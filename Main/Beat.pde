@@ -13,7 +13,7 @@ class Beat {
     endy = y2;
     c=c1;
     radius = 100;
-    doubleRadius = radius+75;
+    doubleRadius = radius + map(duration, 0, 1000, 0, 60);
     timeStamp = timestamp1;
     moving = true;
     currX = x1;
@@ -23,6 +23,20 @@ class Beat {
   public Beat(float x, float y, color c1, float timestamp1){
     this(x, y, x, y, c1, timestamp1);
     moving = false;
+  }
+  
+  public Beat(float x, float y, color c1) {
+    this(x, y, c1, millis());
+    doubleRadius = 0;
+  }
+  
+  void drawSelf() {
+    noFill();
+    stroke(c);
+    ellipse(currX, currY, doubleRadius, doubleRadius);
+    
+    fill(c);
+    ellipse(currX, currY, radius, radius);
   }
   
   float getRadius(){
@@ -58,7 +72,6 @@ class Beat {
   
   public int getScoreWhenClicked(float time) {
     int score = (int)map(time, timeStamp, timeStamp + duration, 0, 75*13);
-    System.out.println(score);
     return score;
   }
 }
