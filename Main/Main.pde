@@ -23,25 +23,26 @@ BeatMaps maps;
 float startTime;
 
 int score;
-int rect1x,rect1x,rect2x,rect2y,rect3x,rect3y;
+int rect1x,rect1y,rect2x,rect2y,rect3x,rect3y;
 final int FRAMERATE = 60;
 
 Stack<Beat> temp;
 
 void setup()
 {
-  size(500, 500);
+  fullScreen();
   background(bgColor);
   frameRate(FRAMERATE);
   
   menu = true;
   
+  map = null;
   maps = new BeatMaps();
   startTime = millis();
   score = 0;
   
   file = new SoundFile(this, "yeet.wav");
-  file.play();
+  //file.play();
   temp = new Stack();
 }
 
@@ -66,17 +67,19 @@ void draw()
         i--;
       }
     }
+    
+    if(map.isEmpty()) {
+      fill(255);
+      rect(0, 0, width, height);
+    
+      stroke(0);
+      fill(0);
+      textSize(64);
+      text(Integer.toString(score), (width - textWidth(Integer.toString(score)))/2, height/2);
+     }
   }
   
-  if(map.isEmpty()) {
-    fill(255);
-    rect(0, 0, width, height);
-    
-    stroke(0);
-    fill(0);
-    textSize(64);
-    text(Integer.toString(score), (width - textWidth(Integer.toString(score)))/2, height/2);
-  }
+  
   
   while(!temp.empty()) {
     Beat b = temp.pop();
@@ -87,19 +90,21 @@ void draw()
 void mouseClicked() {
   boolean hitAnything = false;
   Beat hit = null;
-  for(Beat b : map) {
-    if(b.isOnScreen(millis() - startTime)) {
-      if(sqrt(pow(mouseX-b.currX, 2) + pow(mouseY-b.currY, 2)) <= b.getRadius()) {
-        hitAnything = true;
-        hit = b;
-        break;
+  if(map != null) {
+    for(Beat b : map) {
+      if(b.isOnScreen(millis() - startTime)) {
+        if(sqrt(pow(mouseX-b.currX, 2) + pow(mouseY-b.currY, 2)) <= b.getRadius()) {
+          hitAnything = true;
+          hit = b;
+          break;
+        }
       }
     }
-  }
-  if(hitAnything) {
-    map.remove(hit);
-    score += hit.getScoreWhenClicked(millis() - startTime);
-    temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
+    if(hitAnything) {
+      map.remove(hit);
+      score += hit.getScoreWhenClicked(millis() - startTime);
+      temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
+    }
   }
 }
 
