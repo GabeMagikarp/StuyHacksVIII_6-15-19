@@ -14,7 +14,8 @@ final color YELLOW = color(255, 255, 0);
 final color BLUE = color(0, 0, 255);
 final color ORANGE = color(255, 125, 0);
 
-final color bgColor = color(0, 0, 45);
+//(0, 0, 45)
+final color bgColor = color(0);
 
 final float duration = 1250;
 
@@ -115,10 +116,17 @@ void draw()
      textFont(createFont("Futura-Bold-48.vlw", 30));
      fill(255);
      stroke(255);
+<<<<<<< HEAD
+     String percent = Integer.toString((int)(100-100*map.size()/initialsize)) + '%';
+     text(percent, width-textWidth(percent), 40);
+     
+     text("Points: " + Integer.toString(score), width-textWidth("Points "), 80);
+=======
      if(nHit != 0) {
        String percent = Integer.toString((int)(100-100*nHit/(initialsize - map.size()))) + '%';
        text(percent, width-textWidth(percent), 40);
      }
+>>>>>>> dcde235b335c841c82e013f7991a28ec6753fa3f
   }
   
   while(!temp.empty()) {
@@ -162,41 +170,55 @@ void keyPressed() {
       switch(key) {
         case 'Q': case 'q':
           if(hit.getColor() == GREEN) {
+<<<<<<< HEAD
+              doHit(hit);
+=======
             map.remove(hit);
             score += hit.getScoreWhenClicked(millis() - startTime);
             temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
             nHit++;
+>>>>>>> dcde235b335c841c82e013f7991a28ec6753fa3f
           }
           break;
         case 'W': case 'w':
           if(hit.getColor() == RED) {
+<<<<<<< HEAD
+            doHit(hit);
+=======
             map.remove(hit);
             score += hit.getScoreWhenClicked(millis() - startTime);
             temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
             nHit++;
+>>>>>>> dcde235b335c841c82e013f7991a28ec6753fa3f
           }
           break;
         case 'E': case 'e':
           if(hit.getColor() == YELLOW) {
+<<<<<<< HEAD
+            doHit(hit);
+=======
             map.remove(hit);
             score += hit.getScoreWhenClicked(millis() - startTime);
             temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
             nHit++;
+>>>>>>> dcde235b335c841c82e013f7991a28ec6753fa3f
           }
           break;
         case 'R': case 'r':
           if(hit.getColor() == BLUE) {
-            map.remove(hit);
-            score += hit.getScoreWhenClicked(millis() - startTime);
-            temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
+            doHit(hit);
           }
           break;
         case 'T': case 't':
           if(hit.getColor() == ORANGE) {
+<<<<<<< HEAD
+              doHit(hit);
+=======
             map.remove(hit);
             score += hit.getScoreWhenClicked(millis() - startTime);
             temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
             nHit++;
+>>>>>>> dcde235b335c841c82e013f7991a28ec6753fa3f
           }
           break;
       }
@@ -213,4 +235,12 @@ void keyPressed() {
 
 void playMusic(){
    file.play();
+}
+
+void doHit(Beat hit){
+   map.remove(hit);
+   int points = hit.getScoreWhenClicked(millis() - startTime); 
+   score += points;
+   
+   temp.push(new Beat(hit.currX, hit.currY, color(0, 255, 255)));
 }
